@@ -1,15 +1,5 @@
 package Aufgabe2;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
-
 public class Main {
 
     public static String jsonFile = "C:\\Users\\Schnapfel\\IdeaProjects\\Aufgabe2\\src\\main\\java\\Aufgabe2\\sampleProductsData.json";
