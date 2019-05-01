@@ -32,15 +32,18 @@ public class Main {
             }
         //-------------------------------------------------------------------------------------
 
-        checkProducts check = new checkProducts();
+        CheckProducts check = new CheckProducts();
         check.checkForCountry("DE");
         check.checkForHighestPrice();
-        System.out.println(check.checkForHighestPrice());
+        //System.out.println(check.checkForHighestPrice());
         check.checkForCheapestPrice();
-        System.out.println(check.checkForCheapestPrice());
+        //System.out.println(check.checkForCheapestPrice());
         check.checkForMostPopular();
-        System.out.println(check.checkForMostPopular());
+        //System.out.println(check.checkForMostPopular());
         check.checkForFragile();
-        System.out.println(check.checkForFragile());
+        //System.out.println(check.checkForFragile());
+
+        OutputProduct outPro = OutputProduct.getInstance();
+        outPro.serializeOutputProduct();
     }
 }

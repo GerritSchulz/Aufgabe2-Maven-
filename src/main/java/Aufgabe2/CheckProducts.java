@@ -3,20 +3,17 @@ package Aufgabe2;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Type;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class checkProducts {
+public class CheckProducts {
 
     private static String filepath = Main.jsonFile;
     private static List<Product> productList;
-    static ArrayList<String> germanProducts;
 
      private static List<Product> readFromJSONFile(String filepath){
         final Type PRODUCT_LIST_TYPE= new TypeToken<ArrayList<Product>>(){}.getType();
