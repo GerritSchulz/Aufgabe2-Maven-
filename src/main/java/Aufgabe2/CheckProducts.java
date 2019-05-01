@@ -45,10 +45,10 @@ public class CheckProducts {
          for(int i = 0; i<=productList.size()-1;i++){
            String countryOfOrigin =  productList.get(i).getCountryOfOrigin();
             if (countryOfOrigin.contentEquals(countryCode)){
-                System.out.println("Produkte aus Deutscheland: " + productList.get(i).getName());
+                //System.out.println("Produkte aus Deutscheland: " + productList.get(i).getName());
                 temp.add(productList.get(i).getName());
             } else {
-                System.out.println("Produkt nicht aus Deutschland: " + productList.get(i).getName());
+                //System.out.println("Produkt nicht aus Deutschland: " + productList.get(i).getName());
             }
          }
             return temp;
@@ -71,7 +71,7 @@ public class CheckProducts {
             }
         }
         //float tempFloat = Collections.max(prices);
-        System.out.println("Liste aller Preise: " + prices + " Höchster Preis: " + Collections.max(prices));// There are more efficient methods to get that value
+        //System.out.println("Liste aller Preise: " + prices + " Höchster Preis: " + Collections.max(prices));// There are more efficient methods to get that value
         return nameOfProductWithHighestPrice;
     }
 
@@ -99,7 +99,7 @@ public class CheckProducts {
             }
         }
         //float tempFloat = Collections.max(prices);
-        System.out.println("Liste aller Preise: " + prices + " Niedrigster Preis: " + Collections.min(prices));// There are more efficient methods to get that value
+        //System.out.println("Liste aller Preise: " + prices + " Niedrigster Preis: " + Collections.min(prices));// There are more efficient methods to get that value
         return nameOfProductWithCheapestPrice;
     }
 
@@ -127,7 +127,7 @@ public class CheckProducts {
             }
         }
         //float tempFloat = Collections.max(purchases);
-        System.out.println("Liste aller Käufe: " + purchases + " Meist gekauftes Produkt: " + Collections.max(purchases));// There are more efficient methods to get that value
+        //System.out.println("Liste aller Käufe: " + purchases + " Meist gekauftes Produkt: " + Collections.max(purchases));// There are more efficient methods to get that value
         return nameOfMostPopularProduct;
     }
 
