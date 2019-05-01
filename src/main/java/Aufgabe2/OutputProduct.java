@@ -13,6 +13,7 @@ public class OutputProduct {
     Boolean containsFragileProducts;
 
 
+    // Used Singleton Pattern here because there is no need of a second instance of an output Object
     private static OutputProduct instance;
     public static  OutputProduct getInstance(){
         if(OutputProduct.instance == null){
@@ -30,6 +31,9 @@ public class OutputProduct {
             this.containsFragileProducts = checker.checkForFragile();
     }
 
+    /**
+     * Passes the otput object to JSON format.
+     */
     public void serializeOutputProduct(){
         OutputProduct outPro = OutputProduct.getInstance();
         Gson gson = new Gson();

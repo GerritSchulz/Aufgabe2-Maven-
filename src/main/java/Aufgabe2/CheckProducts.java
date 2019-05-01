@@ -12,10 +12,15 @@ import java.util.List;
 
 public class CheckProducts {
 
-    private static String filepath = Main.jsonFile;
+    private static String filepath = Main.jsonFile; // get the Path to the .json file from the Main class
     private static List<Product> productList;
 
-     private static List<Product> readFromJSONFile(String filepath){
+    /**
+     * Reads in all data from a .json file and pass them into a list.
+     * @param filepath .json Path to the file
+     * @return List from type product
+     */
+    private static List<Product> readFromJSONFile(String filepath){
         final Type PRODUCT_LIST_TYPE= new TypeToken<ArrayList<Product>>(){}.getType();
         Gson gson = new Gson();
         try{
@@ -28,6 +33,11 @@ public class CheckProducts {
         return null;
     }
 
+    /**
+     * Checks for the given CountryCode (see ISO-3166-2) and collects all products that match with it
+     * @param countryCode String with the country code of ISO-3166-2
+     * @return ArrayList of countries that matches the countryCode
+     */
     public ArrayList<String> checkForCountry(String countryCode){
          productList = readFromJSONFile(filepath);
          ArrayList<String> temp = new ArrayList<String>();
@@ -44,6 +54,10 @@ public class CheckProducts {
             return temp;
     }
 
+    /**
+     * Checks for the highest price of all products
+     * @return String Name of the product with the highest price
+     */
     public String checkForHighestPrice(){
          productList = readFromJSONFile(filepath);
          ArrayList<Float> prices = new ArrayList<Float>();
@@ -61,6 +75,10 @@ public class CheckProducts {
         return nameOfProductWithHighestPrice;
     }
 
+    /**
+     * Checks for the cheapest price of all products
+     * @return String Name of the product with the cheapest price
+     */
     public String checkForCheapestPrice(){
         productList = readFromJSONFile(filepath);
         ArrayList<Float> prices = new ArrayList<Float>();
@@ -85,6 +103,10 @@ public class CheckProducts {
         return nameOfProductWithCheapestPrice;
     }
 
+    /**
+     * Checks for the most popular product
+     * @return String Name of the most popular product
+     */
     public String checkForMostPopular(){
         productList = readFromJSONFile(filepath);
         ArrayList<Integer> purchases = new ArrayList<Integer>();
@@ -109,6 +131,11 @@ public class CheckProducts {
         return nameOfMostPopularProduct;
     }
 
+    /**
+     * Checks if there is a fragile Product or not.
+     * Returns true if at least one product is fragile.
+     * @return Boolean
+     */
     public Boolean checkForFragile(){
         productList = readFromJSONFile(filepath);
         Boolean containsFragile = false;

@@ -21,44 +21,26 @@ public class Product {
 
 
 
-    // GETTER and SETTER
+    // GETTER
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getCountryOfOrigin() {
         return countryOfOrigin;
     }
 
-    public void setCountryOfOrigin(String countryOfOrigin) {
-        this.countryOfOrigin = countryOfOrigin;
-    }
-
     public BigDecimal getPrice() {
         return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
     }
 
     public boolean isFragile() {
         return isFragile;
     }
 
-    public void setFragile(boolean fragile) {
-        isFragile = fragile;
-    }
-
     public int getTimesPurchased() {
         return timesPurchased;
     }
 
-    public void setTimesPurchased(int timesPurchased) {
-        this.timesPurchased = timesPurchased;
-    }
+
 }
