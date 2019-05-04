@@ -1,6 +1,7 @@
 package Aufgabe2;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import java.io.FileNotFoundException;
@@ -9,6 +10,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CheckProducts {
 
@@ -30,6 +32,9 @@ public class CheckProducts {
         catch(FileNotFoundException e) {
             e.printStackTrace();
         }
+        catch (JsonParseException e){
+            e.printStackTrace();
+        }
         return null;
     }
 
@@ -38,20 +43,15 @@ public class CheckProducts {
      * @param countryCode String with the country code of ISO-3166-2
      * @return ArrayList of countries that matches the countryCode
      */
-    public ArrayList<String> checkForCountry(String countryCode){
-         productList = readFromJSONFile(filepath);
-         ArrayList<String> temp = new ArrayList<String>();
-
-         for(int i = 0; i<=productList.size()-1;i++){
-           String countryOfOrigin =  productList.get(i).getCountryOfOrigin();
-            if (countryOfOrigin.contentEquals(countryCode)){
-                //System.out.println("Produkte aus Deutscheland: " + productList.get(i).getName());
-                temp.add(productList.get(i).getName());
-            } else {
-                //System.out.println("Produkt nicht aus Deutschland: " + productList.get(i).getName());
-            }
-         }
-            return temp;
+    public ArrayList<String> checkForCountry (String countryCode) {
+        productList = readFromJSONFile(filepath);
+        ArrayList<String> temp = new ArrayList<>();
+        List<Product> collect = productList.stream().filter(x -> x.getCountryOfOrigin().contentEquals(countryCode)).collect(Collectors.toList());
+        for(Product product : collect){
+             temp.add(product.getName());
+        }
+        System.out.println(temp);
+        return temp;
     }
 
     /**
@@ -63,11 +63,11 @@ public class CheckProducts {
          ArrayList<Float> prices = new ArrayList<Float>();
          float temp = 0.0f;
          String nameOfProductWithHighestPrice = "";
-        for (int i = 0; i<=productList.size()-1;i++) {
-            prices.add(i,productList.get(i).getPrice().floatValue());
-            if(productList.get(i).getPrice().floatValue()>temp) {
-                temp = productList.get(i).getPrice().floatValue();
-                nameOfProductWithHighestPrice = productList.get(i).getName();
+        for (Product product : productList) {
+            prices.add(product.getPrice().floatValue());
+            if(product.getPrice().floatValue()>temp) {
+                temp = product.getPrice().floatValue();
+                nameOfProductWithHighestPrice = product.getName();
             }
         }
         //float tempFloat = Collections.max(prices);
@@ -81,7 +81,7 @@ public class CheckProducts {
      */
     public String checkForCheapestPrice(){
         productList = readFromJSONFile(filepath);
-        ArrayList<Float> prices = new ArrayList<Float>();
+        ArrayList<Float> prices = new ArrayList<>();
         float temp = 0.0f;
         String nameOfProductWithCheapestPrice = "";
         if (productList != null) { // check if there is an object in the productList...
@@ -91,11 +91,11 @@ public class CheckProducts {
             return ""; // ...or returns an empty string if productList is empty
         }
 
-        for (int i = 0; i<=productList.size()-1;i++) {
-            prices.add(i,productList.get(i).getPrice().floatValue());
-            if(productList.get(i).getPrice().floatValue()<temp) {
-                temp = productList.get(i).getPrice().floatValue();
-                nameOfProductWithCheapestPrice = productList.get(i).getName();
+        for (Product product : productList) {
+            prices.add(product.getPrice().floatValue());
+            if(product.getPrice().floatValue()<temp) {
+                temp = product.getPrice().floatValue();
+                nameOfProductWithCheapestPrice = product.getName();
             }
         }
         //float tempFloat = Collections.max(prices);
@@ -119,11 +119,11 @@ public class CheckProducts {
             return ""; // ...or returns an empty string if productList is empty
         }
 
-        for (int i = 0; i<=productList.size()-1;i++) {
-            purchases.add(i,productList.get(i).getTimesPurchased());
-            if(productList.get(i).getTimesPurchased()>temp) {
-                temp = productList.get(i).getTimesPurchased();
-                nameOfMostPopularProduct = productList.get(i).getName();
+        for (Product product: productList) {
+            purchases.add(product.getTimesPurchased());
+            if(product.getTimesPurchased()>temp) {
+                temp = product.getTimesPurchased();
+                nameOfMostPopularProduct = product.getName();
             }
         }
         //float tempFloat = Collections.max(purchases);
@@ -140,8 +140,8 @@ public class CheckProducts {
         productList = readFromJSONFile(filepath);
         Boolean containsFragile = false;
 
-        for (int i = 0; i<=productList.size()-1;i++) {
-            if (productList.get(i).isFragile()){
+        for (Product product : productList) {
+            if (product.isFragile()){
                 containsFragile = true;
             }
         }
