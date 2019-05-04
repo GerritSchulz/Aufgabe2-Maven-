@@ -8,7 +8,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,7 +49,7 @@ public class CheckProducts {
         for(Product product : collect){
              temp.add(product.getName());
         }
-        System.out.println(temp);
+        //System.out.println(temp);
         return temp;
     }
 
